@@ -1,0 +1,44 @@
+﻿@using Fundraise.MvcExample.Models
+@model CampaignFormViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h1>Create new Campaign</h1>
+    </div>
+    <div class="row">
+
+        <form id="campaignForm" novalidate action="@Url.Action("CampaignCreate", "Admin")" method="post">
+            <div class="col-lg-10">
+
+                @Html.ValidationSummary()
+
+                @Html.HiddenFor(p => p.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(p => p.Name)
+                    @Html.EditorFor(p => p.Name)
+                    @Html.ValidationMessageFor(p => p.Name, "*")
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.Description)
+                    @Html.EditorFor(p => p.Description)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(p => p.DefaultCurrencyCode)
+                    @Html.EditorFor(p => p.DefaultCurrencyCode)
+                </div>
+
+                <div class="form-group pull-right">
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+                    <input id="campaign-create" type="submit" class="btn btn-success" value="Save" />
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
